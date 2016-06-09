@@ -10,3 +10,8 @@ Build Status
 | Production  |   Staging   | Development |
 |:-----------:|:-----------:|:-----------:|
 |[![build status](https://gitlab.ocw.media.nagoya-u.ac.jp/NUOCW/ocw-cms/badges/master/build.svg)](https://gitlab.ocw.media.nagoya-u.ac.jp/NUOCW/ocw-cms/commits/master)|[![build status](https://gitlab.ocw.media.nagoya-u.ac.jp/NUOCW/ocw-cms/badges/staging/build.svg)](https://gitlab.ocw.media.nagoya-u.ac.jp/NUOCW/ocw-cms/commits/staging)|[![build status](https://gitlab.ocw.media.nagoya-u.ac.jp/NUOCW/ocw-cms/badges/development/build.svg)](https://gitlab.ocw.media.nagoya-u.ac.jp/NUOCW/ocw-cms/commits/development)|
+
+License
+-------
+
+This software is distributed under [MIT License](./LICENSE).

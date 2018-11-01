@@ -17,7 +17,7 @@ interface HasNameInterface{
     +appendNames($names : NameCollectionInterface) : void
     +setName($name : NameInterface) : void
     +removeNameByLanguage($language : languageInterface) : NameInterface
-    +removeNamesByLanguages($languages : LanguageCollectionInterface) : NameCollection
+    +removeNamesByLanguages($languages : LanguageCollectionInterface) : NameCollectionInterface
     +removeName($name : NameInterface) : boolean
     +removeNames($names : NameCollectionInterface) : boolean
 }

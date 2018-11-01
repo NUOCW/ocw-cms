@@ -1,0 +1,78 @@
+@startuml
+
+interface EntityInterface{
+    -getId() : int
+}
+
+interface HasNameInterface{
+    +getName($language : LanguageInterface) : NameInterface
+    +getNames() : NameCollectionInterface
+    +appendName($name : NameInterface) : void
+    +appendNames($names : NameCollectionInterface) : void
+    +setName($name : NameInterface) : void
+    +removeNameByLanguage($language : languageInterface) : NameInterface
+    +removeNamesByLanguages($languages : LanguageCollectionInterface) : NameCollectionInterface
+    +removeName($name : NameInterface) : boolean
+    +removeNames($names : NameCollectionInterface) : boolean
+}
+
+interface DepartmentTypeCollectionInterface{
+}
+
+interface DepartmentTypeInterface{
+    +getNames($languages : LanguageCollectionInterface) : DepartmentTypeNameCollectionInterface
+    +appendName($name : DepartmentTypeNameInterface) : void
+    +appendNames($names : DepartmentTypeNameCollectionInterface) : void
+    +setName($name : DepartmentTypeNameInterface) : void
+    +removeName($name : DepartmentTypeNameInterface) : boolean
+    +removeNames($names : DepartmentTypeNameCollectionInterface) : boolean
+}
+
+interface Collection{
+}
+
+interface DepartmentTypeNameInterface{
+}
+
+interface NameInterface{
+    +__construct($name : string, $language : LanguageInterface)
+    +getName() : string
+    +setName($name : string) : void
+    +getLanguage() : LanguageInterface
+    +__toString() : string
+}
+
+interface NameCollectionInterface{
+    +getByLanguage($language : LanguageInterface) : NameInterface
+    +getByLanguages($languages : LanguageCollectionInterface) : NameCollection
+    +setName($name : NameInterface) : void
+    +setNames($names : nameCollectionInterface) : void
+    +removeByLanguage($language : LanguageInterface) : boolean
+    +removeByLanguages($languages : LanguageCollectionInterface) : boolean
+}
+
+interface DepartmentTypeNameCollectionInterface{
+    +getByLanguage($language : LanguageInterface) : DepartmentTypeNameInterface
+    +getByLanguages($languages : LanguageCollectionInterface) : DepartmentTypeNameCollectionInterface
+    +setName($name : DepartmentTypeNameInterface) : void
+    +setNames($name : DepartmentTypeNameCollectionInterface) : void
+}
+
+EntityInterface <|-- DepartmentTypeInterface
+HasNameInterface <|-- DepartmentTypeInterface
+DepartmentTypeCollectionInterface o--> DepartmentTypeInterface
+DepartmentTypeNameInterface <-- DepartmentTypeInterface
+DepartmentTypeNameCollectionInterface <-- DepartmentTypeInterface
+
+DepartmentTypeNameInterface <--o DepartmentTypeNameCollectionInterface
+
+NameInterface <|-- DepartmentTypeNameInterface
+
+NameCollectionInterface <|-- DepartmentTypeNameCollectionInterface
+
+Collection <|-- DepartmentTypeCollectionInterface
+Collection <|-- NameCollectionInterface
+
+NameInterface <--o NameCollectionInterface
+
+@enduml

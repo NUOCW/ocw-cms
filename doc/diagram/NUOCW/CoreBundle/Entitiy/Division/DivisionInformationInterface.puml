@@ -1,26 +1,56 @@
 @startuml
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
+interface DivisionCollectionInterface
 interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+interface DivisionNameInterface
+interface EntityInterface {
+    -getld(): int
+}
+interface DivisionInformationInterface {
+    +getName($language: LanguageInterface): DivisionNameInterface
+    +getNames(): DivisionNameCollectionInterface
+    +appendName($name: DivisionNameInterface): void
+    +appendNames($names: DivisionNameCollectionInterface): void
+    +setName($name: DivisionNameInterface): void
+    +removeName($name: DivisionNameInterface): boolean
+    +removeNames($names: DivisionNameCollectionInterface): boolean
+    +getDepartments(): DepartmentCollectionInterface
+    +appendDepartment($department: DepartmentInformationInterface): void
+    +appendDepartments($departments: DepartmentCollectionInterface): void
+}
+interface DivisionNameCollectionInterface {
+    +getByLangage($language: LanguageInterface): DivisionInformationInterface
+    +getByLanguages($languages: LanguageCollectionInterface): DivisionNameCollectionInterface
+    +setName($name: DivisionNameInterface): void
+    +setNames($name: DivisionNameCollectionInterface): void
+}
+interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setnames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): voolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
+}
+interface NameInterface {
+    +_construct($name:  string,$language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +_toString(): string
+}
+interface HasNameInterface {
+    +getName($language: LanguageIntterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): bolean
+    +removeNames($names: NameCollectionInterface): boolean
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
+
 
 @enduml

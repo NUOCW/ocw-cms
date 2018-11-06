@@ -1,11 +1,15 @@
 @startuml
 
 interface DivisionCollectionInterface
+
 interface Collection
+
 interface DivisionNameInterface
+
 interface EntityInterface {
     -getld(): int
 }
+
 interface DivisionInformationInterface {
     +getName($language: LanguageInterface): DivisionNameInterface
     +getNames(): DivisionNameCollectionInterface
@@ -18,12 +22,14 @@ interface DivisionInformationInterface {
     +appendDepartment($department: DepartmentInformationInterface): void
     +appendDepartments($departments: DepartmentCollectionInterface): void
 }
-interface DivisionNameCollectionInterface {
+
+interface  DivisionNameCollectionInterface{
     +getByLangage($language: LanguageInterface): DivisionInformationInterface
     +getByLanguages($languages: LanguageCollectionInterface): DivisionNameCollectionInterface
     +setName($name: DivisionNameInterface): void
     +setNames($name: DivisionNameCollectionInterface): void
 }
+
 interface NameCollectionInterface {
     +getByLanguage($language: LanguageInterface): NameInterface
     +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
@@ -32,6 +38,7 @@ interface NameCollectionInterface {
     +removeByLanguage($language: LanguageInterface): voolean
     +removeByLanguages($languages: LanguageCollectionInterface): boolean
 }
+
 interface NameInterface {
     +_construct($name:  string,$language: LanguageInterface)
     +getName(): string
@@ -39,6 +46,7 @@ interface NameInterface {
     +getLanguage(): LanguageInterface
     +_toString(): string
 }
+
 interface HasNameInterface {
     +getName($language: LanguageIntterface): NameInterface
     +getNames(): NameCollectionInterface
@@ -50,6 +58,31 @@ interface HasNameInterface {
     +removeName($name: NameInterface): bolean
     +removeNames($names: NameCollectionInterface): boolean
 }
+
+DivisionCollectionInterface o--> DivisionInformationInterface
+
+DivisionInformationInterface --> DivisionNameInterface
+
+DivisionInformationInterface --> DivisionNameCollectionInterface
+
+DivisionInformationInterface --|> EntityInterface
+
+DivisionInformationInterface --|> HasNameInterface
+
+DivisionCollectionInterface --|>Collection
+
+DivisionNameCollectionInterface --|> NameCollectionInterface
+
+DivisionNameCollectionInterface o--> DivisionNameInterface
+
+NameCollectionInterface --|>Collection
+
+NameCollectionInterface o--> NameInterface
+
+DivisionNameInterface --|> NameInterface
+
+
+
 
 
 

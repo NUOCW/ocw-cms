@@ -1,0 +1,112 @@
+@startuml
+
+
+interface Collection
+
+interface InstructorOptionalTypeNameInterface
+
+interface InstructorOptionalCollectionInterface {
+    +getByLanguage($language :languageInterface) :InstructorOptionalCollectionInterface
+    +getByType($type :InstructorOptionalTypeInterface) :InstructorOptionalCollectionInterface
+    +geteOptional($type :InstructorOptionalTypeInterface, $language :Language\eInterface) :InstructorOptionalInformationInterface
+}
+
+interface OptionalCollectionInterface {
+    +getByLanguage($lnguage :LanguageInterface) :OptionalCollectionInterface
+    +getByType($type :OptionalTypeInterface) :OptionalCollectionInterface
+    +getOption($type :OptionalTypeInterface, $language :LanguageInterface) :OptionalInformationInterface
+}
+
+interface OptionalInformationInterface {
+    +getContent() :string
+    +setContent($content :string) :void
+    +getType() :OptionalTypeInterface
+    +setType($type :OptionalTypeInterface) :void
+    +getTypeName($lanaguage :LanguageInterface) :NameInterface
+    +getTypeNames() :NameCollectionInterface
+    +getLanguage() :LanguageInterface
+}
+
+interface InstructorOptionalInformationInterface {
+    +getType() :InstructorOptionalTypeInterface
+    +setType($type :InstructorOptionalTypeInterface) :void
+    +getTypeName($language :LanguageInterface) :InstructorOptionalTypeNameInterface
+    +getTypeNames() :InstructorOptionalTypeNameCollectionInterface
+}
+
+interface InstructorOptionalTypeInterface {
+    +getName($language :LanguageInterface) :InstructorOptionalTypeNameInterface
+    +getNames() :InstructorOptionalTypeNameCollectionInterface
+    +appendName($name :InstuructorOptionalTypeNameInterface) :void
+    +appendNames($names :InstructorOptionalTypeNameCollectionInterface) :void
+    +setName($name :InstructorOptionalTypeNameInterface) :void
+    +removeName($name :InstructorOptionalTypeNameInterface) :boolean
+    +removeNames($names :InstructorOptionalTypeNameCollectionInterface) :boolean
+}
+
+interface HasNameInterface {
+    +getName($language :LanguageInterface) :NameInterface
+    +getNames() :NameCollectionInterface
+    +appendName($name :NameInterface) :void
+    +appendNames($names :NameCollectionInterface) :void
+    +setName($name :NameInterface) :void
+    +removeNameByLanguage($language :LanguageInterface) :NameInterface
+    +removesNamesByLanguages($lnguages :LanguageCollectionInterface) :NameCollectionInterface
+    +removeName($name :NameInterface) :boolean
+    +removeNames($names :NameCollectionInterface) :boolean
+}
+
+interface InstructorOptionalTypeNameCollectionInterface {
+    +getByLanguage($language :LanguageInterface) :InstructorOptionalTypeNameInterface
+    +getByLanguage($languages :LanguageCollectionInterface) :InstructorOptionalTypeNameCollectionInterface
+    +setName($name :InstructorOptionalTypeNameInterface) :void
+    +setNames($name :InstructorOptionalTypeNameCollectionInterface) :void
+}
+
+interface NameCollectionInterface {
+    +getByLanguage($language :LanguageInterface) :NameInterface
+    +getByLanguages($languages :LanguageCollectionInterface) :NameCollectionInterface
+    +setName($name :NameInterface) :void
+    +setNames($names :NameCollectionInterface) :void
+    +removeByLanguage($language :LanguageInterface) :boolean
+    +removeByLanguages($languages :LanguageCollectionInterface) :boolean
+}
+
+interface NameInterface {
+    +_construct($name :string, $language :LanguageInterface
+    +getName() :string
+    +setName($name :string) :void
+    +getLanguage() :LanguageInterface
+    +_toString() :string
+}
+
+OptionalCollectionInterface o--> OptionalInformationInterface
+
+OptionalCollectionInterface --|> Collection
+
+OptionalCollectionInterface --|> InstructorOptionalCollectionInterface
+
+InstructorOptionalCollectionInterface o--> InstructorOptionalInformationInterface
+
+InstructorOptionalInformationInterface -->InstructorOptionalTypeInterface
+
+InstructorOptionalInformationInterface --|> OptionalInformationInterface
+
+HasNameInterface --|> InstructorOptionalTypeInterface
+
+InstructorOptionalTypeInterface --> InstructorOptionalTypeNameInterface
+
+InstructorOptionalTypeInterface --> InstructorOptionalTypeNameCollectionInterface
+
+InstructorOptionalTypeNameInterface --|> NameInterface
+
+InstructorOptionalTypeNameCollectionInterface o--> InstructorOptionalTypeNameInterface
+
+InstructorOptionalTypeNameCollectionInterface --|> NameCollectionInterface
+
+NameCollectionInterface o--> NameInterface
+
+NameCollectionInterface --|> Collection
+
+
+@enduml

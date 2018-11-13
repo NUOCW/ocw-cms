@@ -34,13 +34,13 @@ interface NameCollectionInterface {
     +getByLanguage($language: LanguageInterface): NameInterface
     +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
     +setName($name: NameInterface): void
-    +setnames($names: NameCollectionInterface): void
-    +removeByLanguage($language: LanguageInterface): voolean
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
     +removeByLanguages($languages: LanguageCollectionInterface): boolean
 }
 
 interface NameInterface {
-    +_construct($name:  string,$language: LanguageInterface)
+    +_construct($name: string,$language: LanguageInterface)
     +getName(): string
     +setName($name: string): void
     +getLanguage(): LanguageInterface
@@ -48,14 +48,14 @@ interface NameInterface {
 }
 
 interface HasNameInterface {
-    +getName($language: LanguageIntterface): NameInterface
+    +getName($language: LanguageInterface): NameInterface
     +getNames(): NameCollectionInterface
     +appendName($name: NameInterface): void
     +appendNames($names: NameCollectionInterface): void
     +setName($name: NameInterface): void
     +removeNameByLanguage($language: LanguageInterface): NameInterface
     +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
-    +removeName($name: NameInterface): bolean
+    +removeName($name: NameInterface): boolean
     +removeNames($names: NameCollectionInterface): boolean
 }
 

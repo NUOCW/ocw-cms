@@ -1,0 +1,19 @@
+@startuml
+
+interface OccupationNameInterface
+
+interface NameInterface{
++_construct($name:string, $language:LanguageInterface)
++getName():string
++setName($name:string):void
++getLanguage():LanguageInterface
++_toString():string
+}
+
+interface OccupationInterface{
+
+}
+
+
+
+@enduml

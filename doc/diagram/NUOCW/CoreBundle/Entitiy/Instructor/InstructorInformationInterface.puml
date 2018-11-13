@@ -8,7 +8,7 @@ interface EntityInterface {
     _getld(): int
 }
 
-interface HasFileInterface {
+interface HasFilesInterface {
     +getFiles($language: LanguageInterface): FileCollectionInterface
     +appendFile($file: FileInformationInterface): void
     +appendFiles($files: FileCollectionInterface): void
@@ -104,13 +104,13 @@ InstructorInformationInterface --|> HasFilesInterface
 
 InstructorInformationInterface --|> HasNameInterface
 
-InstructorInformationInterface --|> HasOptionInformationInterface
+InstructorInformationInterface --|> HasOptionalInformationInterface
 
 InstructorInformationInterface --> InstructorNameInterface
 
 InstructorInformationInterface --> InstructorNameCollectionInterface
 
-instructorNameInterface --|> NameInterface
+InstructorNameInterface --|> NameInterface
 
 InstructorNameCollectionInterface o--> InstructorNameInterface
 

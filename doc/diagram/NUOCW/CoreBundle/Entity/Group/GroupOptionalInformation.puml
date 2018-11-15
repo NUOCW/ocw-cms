@@ -1,0 +1,15 @@
+@startuml
+
+interface GroupOptionalCollectionInterface{
+    +getByLanguage($language : LanguageInterface) : GroupOptionalCollectionInterface
+    +getByType($type : GroupOptionalTypeInterface) : GroupOptionalCollectionInterface
+    +getOption($type : GroupOptionalTypeInterface, $language : LanguageInterface) : GroupOptionalInformationInterface
+}
+
+interface OptionalCollectionInterface{
+    +getByLanguage($language : LanguageInterface) : OptionalCollectionInterface
+    +getByType($type : OptionalTypeInterface) : OptionalCollectionInterface
+    +getOption($type : OptionalTypeInterface, $language : LanguageInterface) : OptionalInformationInterface
+}
+
+@enduml

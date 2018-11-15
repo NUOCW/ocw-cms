@@ -1,0 +1,45 @@
+@startuml
+
+interface LanguageInterface{
+    +getName($language: LanguageInterface): LanguageNameInterface
+    +getName(): LanguageNameCollectionInterface
+    +appendName($name: LanguageNameInterface): void
+    +appendNames($names: LanguageNameCollectionInterface): void
+    +setName($name: LanguageNameInterface): void
+    +removeName($name: LanguageNameInterface): boolean
+    +removeNames($names: LanguageNameInterface): boolean
+}
+
+interface HasNameInterface{
+    +getName($language: LanguageInterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removeNames($names: NameCollectionInterface): boolean
+}
+
+interface LanguageNameCollectionInterface{
+    +getByLanguage($language: LanguageInterface): LanguageNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): LanguageNameCollectionInterface
+    +setName($name: LanguageNameInterface): void
+    +setNames($name: LanguageNameInterface): void
+}
+
+interface LanguageNameInterface{
+}
+
+interface NameCollectionInterface{
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
+}
+
+
+@enduml

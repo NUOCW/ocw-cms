@@ -1,0 +1,89 @@
+@startuml
+
+interface DivisionCollectionInterface
+
+interface Collection
+
+interface DivisionNameInterface
+
+interface EntityInterface {
+    -getld(): int
+}
+
+interface DivisionInformationInterface {
+    +getName($language: LanguageInterface): DivisionNameInterface
+    +getNames(): DivisionNameCollectionInterface
+    +appendName($name: DivisionNameInterface): void
+    +appendNames($names: DivisionNameCollectionInterface): void
+    +setName($name: DivisionNameInterface): void
+    +removeName($name: DivisionNameInterface): boolean
+    +removeNames($names: DivisionNameCollectionInterface): boolean
+    +getDepartments(): DepartmentCollectionInterface
+    +appendDepartment($department: DepartmentInformationInterface): void
+    +appendDepartments($departments: DepartmentCollectionInterface): void
+}
+
+interface  DivisionNameCollectionInterface{
+    +getByLangage($language: LanguageInterface): DivisionInformationInterface
+    +getByLanguages($languages: LanguageCollectionInterface): DivisionNameCollectionInterface
+    +setName($name: DivisionNameInterface): void
+    +setNames($name: DivisionNameCollectionInterface): void
+}
+
+interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
+}
+
+interface NameInterface {
+    +_construct($name: string,$language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +_toString(): string
+}
+
+interface HasNameInterface {
+    +getName($language: LanguageInterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removeNames($names: NameCollectionInterface): boolean
+}
+
+DivisionCollectionInterface o--> DivisionInformationInterface
+
+DivisionInformationInterface --> DivisionNameInterface
+
+DivisionInformationInterface --> DivisionNameCollectionInterface
+
+DivisionInformationInterface --|> EntityInterface
+
+DivisionInformationInterface --|> HasNameInterface
+
+DivisionCollectionInterface --|>Collection
+
+DivisionNameCollectionInterface --|> NameCollectionInterface
+
+DivisionNameCollectionInterface o--> DivisionNameInterface
+
+NameCollectionInterface --|>Collection
+
+NameCollectionInterface o--> NameInterface
+
+DivisionNameInterface --|> NameInterface
+
+
+
+
+
+
+@enduml

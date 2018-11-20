@@ -1,0 +1,55 @@
+@startuml
+
+interface GroupStatusCollectionInterface{
+}
+
+interface StatusCollectionInterface{
+    +getStatus($language : LanguageInterface) : StatusInterface
+}
+
+interface GroupStatusInterface{
+}
+
+interface StatusInterface{
+    +getStatus() : StatusMasterInterface
+    +getLanguage() : LanguageInterface
+    +getDescription($language : LanguageInterface) : string
+    +getDescriptions() : StatusDescriptionCollectionInterface
+}
+
+interface StatusMasterInterface{
+    +getName($language : LanguageInterface) : StatusNameInterface
+    +getNames() : StatusNameCollectionInterface
+    +appendName($name : StatusNameInterface) : void
+    +appendNames($names : StatusNameCollectionInterface) : void
+    +setName($name : StatusNameInterface) : void
+    +removeName($Name : StatusNameInterface) : boolean
+    +removeNames($names : StatusNameCollectionInterface) : boolean
+    +getDescription($language : LanguageInterface) : StatusDescriptionInterface
+    +getDescriptions() : StatusDescriptionCollectionInterface
+}
+
+interface StatusDescriptionCollectionInterface{
+}
+
+interface StatusDescriptionInterface{
+    +__construct($description : string, $language : LanguageInterface)
+    +getDescription() : string
+    +setDescription($description : string) : void
+    +getLanguage() : LanguageInterface
+    +__toString() : string
+}
+
+StatusCollectionInterface <|-- GroupStatusCollectionInterface
+GroupStatusInterface <--o GroupStatusCollectionInterface
+
+StatusInterface <--o StatusCollectionInterface
+
+StatusInterface <|-- GroupStatusInterface
+StatusMasterInterface <.. GroupStatusInterface
+
+StatusDescriptionCollectionInterface <-- StatusMasterInterface
+
+StatusDescriptionInterface <--o StatusDescriptionCollectionInterface
+
+@enduml

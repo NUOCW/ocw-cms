@@ -41,5 +41,37 @@ interface NameCollectionInterface{
     +removeByLanguages($languages: LanguageCollectionInterface): boolean
 }
 
+interface NameInterface{
+    +__construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
+}
+
+interface EntityInterface{
+    +getId(): int
+}
+
+interface LanguageCollectionInterface{
+}
+
+interface Collection{
+}
+
+LanguageCollectionInterface --|> Collection
+LanguageCollectionInterface o--> LanguageInterface
+
+LanguageInterface --|> EntityInterface
+LanguageInterface --|> HasNameInterface
+LanguageInterface --> LanguageNameCollectionInterface
+LanguageInterface --> LanguageNameInterface
+
+LanguageNameCollectionInterface o--> LanguageNameInterface
+LanguageNameCollectionInterface --|> NameCollectionInterface
+
+LanguageNameInterface --|> NameInterface
+
+NameCollectionInterface o--> NameInterface
 
 @enduml

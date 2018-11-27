@@ -1,0 +1,137 @@
+@startuml
+
+Interface CourseCollectionInterface
+
+Interface Collection
+
+Interface CourseNameInterface
+
+Interface EntityInterface {
+    _getld(): int
+}
+
+Interface HasFilesInterface {
+    +getFiles($language: LanguageInterface): FileCollectionInterface
+    +appendFile($file: FileInformationInterface): void
+    +appendFiles($files: FileCollectionInterface): void
+}
+
+Interface HasStatusInterface {
+    +getStatus($language: LanguageInterface): StatusInterface
+    +getStatus(): StatusCollectionInterface
+    +setStatus($status: StatusInterface): void
+    +setStatus($status: StatusCollectionInterface): void
+}
+
+Interface HasNameInterface {
+    +getName($language: LanguageInterface): NameInteface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($language: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removeNames($names: NameCollectionInterface): boolean
+}
+
+Interface HasOptionalInformationInterface {
+    +getOptions($language: LanguageInterface): OptionalCollectionInterface
+    +appendOption($option: OptionInformationInterface): void
+    +appendOptions($options: OptionalCollectionInterface): void
+    +removeOption($option: OptionalInformationInterface): void
+    +removeOptions($optionalCollectitonInterface): void
+}
+
+Interface CourseNameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): CourseNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): CourseNameCollectionInterface
+    +setName($name: CourseNameInterface): void
+    +setNames($name: CourseNameCollectionInterface): void
+}
+
+Interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface)NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface);NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolen
+}
+
+Interface NameInterface {
+    +_construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string)void
+    +getLanguage(): LanguageInterface
+    +_toString(): string
+}
+
+interface CourseInformationInterface {
+    +getName($language: LanguageInterface): CourseNameInterface
+    +getNames();: CourseNameCollectionInterface
+    +appendName($name: CourseNameInterface): void
+    +appendNames($names: CourseNameCollectionInterface): void
+    +setName($name: CourseNameInterface): void
+    +removeName($name: CourseNameInterface): boolean
+    +removeNames($names: CourseNameCollectionInterface): boolean
+    +getOptions($language: LanguageInterface): CourseOptionalCollectionInterface
+    +appendOption($option: CourseOptionalInformationInterface): void
+    +appendOptions($options: CourseOptionalCollectionInterface): void
+    +removeOption($option: CourseOptionalInformationInterface): void
+    +removeOptions($options: CourseOptionalCollectionInterface): void
+    +getOpeningInformation(): CourseOpeningInformationInterface
+    +getTargets(): CourseTargetCollectionInterface
+    +appendTarget($target: CourseTargetInformation): void
+    +appendTargets($targets: CourseTargetCollectionInterface): void
+    +getSubCategories(): CourseClassificationSubCategoryCollectionInterface
+    +appendSubCategory($subCategory: CourseClassificationSubCategoryInterface): void
+    +appendSubCategories($subCategories: CourseClassificationSubCategoryCollectionInterface): void
+    +getDepartments(): DepartmentCollectionInterface
+    +appendDepartment($department: DepartmentInformationInterface): void
+    +appendDepartments($departments: DepartmentCollectionInterface): void
+    +getSubDepartments(): DepartmentCollectionInterface
+    +appendSubDepartment($department: DepartmentInformationInterface): void
+    +appendSubDepartments($departments: Departments: DepartmentCollectionInterface): void
+    +getInstructors(): InstructorCollectionInterface
+    +appendInstructor(($instructor: InstructorInformationInterface): void
+    +appendInstructors($instructors: InstructorCollectionInterface): void
+    +getSubInstructors(): InstructorCollectionInterface): void
+    +appendSubInstructor($instructor: InstructorInformationInterface): void
+    +appendSubInstructors($instructors: InstructorCollectionInterface): void
+    +getStatus($laguage: LanguageInterface): CourseStatusInterface
+    +getStatus(): CourseStatusCollectionInterface
+    +setStatus($status: CourseStatusInterface): void
+    +setStatus($status: CourseStatusCollectionInterface): void
+}
+
+CourseInformationInterface --|> EntityInterface
+
+CourseInformationInterface --|> HasFilesInterface
+
+CourseInformationInterface --|> HasStatusInterface
+
+CourseInformationInterface --|> HasNameInterface
+
+CourseInformationInterface --|> HasOptionalInformationInterface
+
+CourseInformationInterface --> CourseNameInterface
+
+CourseInformationInterface --> CourseNameCollectionInterface
+
+CourseCollectionInterface o--> CourseInformationInterface
+
+CourseCollectionInterface --|> Collection
+
+CourseNameCollectionInterface o--> CourseNameInterface
+
+CourseNameCollectionInterface --|>NameCollectionInterface
+
+NameCollectionInterface o--> NameInterface
+
+NameCollectionInterface --> Collection
+
+CourseNameInterface --|> NameInterface
+
+
+@enduml

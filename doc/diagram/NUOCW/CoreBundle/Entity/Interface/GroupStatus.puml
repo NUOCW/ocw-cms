@@ -1,0 +1,45 @@
+@startuml
+
+interface GroupStatusCollectionInterface {
+}
+
+interface StatusCollectionInterface {
+    +getStatus($language: LanguageInterface): StatusInterface
+}
+
+interface GroupStatusInterface {
+}
+
+Interface StatusInterface {
+    +getStatus(): StatusMasterInterface
+    +getLanguage(): LanguageInterface
+    +getDescriptions(): StatusDescriptionCollectionInterface
+    +getDescription($language: LanguageInterface): string
+}
+
+interface StatusMasterInterface {
+    +getDescriptions(): StatusDescriptionCollectionInterface
+    +getDescription($language: LanguageInterface): string
+}
+
+interface StatusDescriptionCollectionInterface {
+}
+
+interface StatusDescriptionInterface {
+    +getDescription(): string
+    +getLanguage(): LanguageInterface
+}
+
+StatusCollectionInterface <|-- GroupStatusCollectionInterface
+GroupStatusInterface <--o GroupStatusCollectionInterface
+
+StatusInterface <--o StatusCollectionInterface
+
+StatusInterface <|-- GroupStatusInterface
+StatusMasterInterface <.. GroupStatusInterface
+
+StatusDescriptionCollectionInterface <-- StatusMasterInterface
+
+StatusDescriptionInterface <--o StatusDescriptionCollectionInterface
+
+@enduml

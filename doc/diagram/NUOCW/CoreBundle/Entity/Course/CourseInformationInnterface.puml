@@ -1,75 +1,75 @@
 @startuml
 
-Interface CourseCollectionInterface
+interface CourseCollectionInterface
 
-Interface Collection
+interface Collection
 
-Interface CourseNameInterface
+interface CourseNameInterface
 
 Interface EntityInterface {
-    _getld(): int
+    -getId(): int
 }
 
-Interface HasFilesInterface {
+interface HasFilesInterface {
     +getFiles($language: LanguageInterface): FileCollectionInterface
     +appendFile($file: FileInformationInterface): void
     +appendFiles($files: FileCollectionInterface): void
 }
 
-Interface HasStatusInterface {
+interface HasStatusInterface {
     +getStatus($language: LanguageInterface): StatusInterface
-    +getStatus(): StatusCollectionInterface
+    +getStatuses(): StatusCollectionInterface
     +setStatus($status: StatusInterface): void
-    +setStatus($status: StatusCollectionInterface): void
+    +setStatuses($statuses: StatusCollectionInterface): void
 }
 
-Interface HasNameInterface {
-    +getName($language: LanguageInterface): NameInteface
+interface HasNameInterface {
+    +getName($language: LanguageInterface): NameInterface
     +getNames(): NameCollectionInterface
     +appendName($name: NameInterface): void
     +appendNames($names: NameCollectionInterface): void
     +setName($name: NameInterface): void
     +removeNameByLanguage($language: LanguageInterface): NameInterface
-    +removeNamesByLanguages($language: LanguageCollectionInterface): NameCollectionInterface
+    +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
     +removeName($name: NameInterface): boolean
     +removeNames($names: NameCollectionInterface): boolean
 }
 
-Interface HasOptionalInformationInterface {
+interface HasOptionalInformationInterface {
     +getOptions($language: LanguageInterface): OptionalCollectionInterface
     +appendOption($option: OptionInformationInterface): void
     +appendOptions($options: OptionalCollectionInterface): void
     +removeOption($option: OptionalInformationInterface): void
-    +removeOptions($optionalCollectitonInterface): void
+    +removeOptions($options: optionalCollectionInterface): void
 }
 
-Interface CourseNameCollectionInterface {
+interface CourseNameCollectionInterface {
     +getByLanguage($language: LanguageInterface): CourseNameInterface
     +getByLanguages($languages: LanguageCollectionInterface): CourseNameCollectionInterface
     +setName($name: CourseNameInterface): void
     +setNames($name: CourseNameCollectionInterface): void
 }
 
-Interface NameCollectionInterface {
-    +getByLanguage($language: LanguageInterface)NameInterface
-    +getByLanguages($languages: LanguageCollectionInterface);NameCollectionInterface
+interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
     +setName($name: NameInterface): void
     +setNames($names: NameCollectionInterface): void
     +removeByLanguage($language: LanguageInterface): boolean
-    +removeByLanguages($languages: LanguageCollectionInterface): boolen
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
 }
 
-Interface NameInterface {
-    +_construct($name: string, $language: LanguageInterface)
+interface NameInterface {
+    +__construct($name: string, $language: LanguageInterface)
     +getName(): string
-    +setName($name: string)void
+    +setName($name: string): void
     +getLanguage(): LanguageInterface
-    +_toString(): string
+    +__toString(): string
 }
 
 interface CourseInformationInterface {
     +getName($language: LanguageInterface): CourseNameInterface
-    +getNames();: CourseNameCollectionInterface
+    +getNames(): CourseNameCollectionInterface
     +appendName($name: CourseNameInterface): void
     +appendNames($names: CourseNameCollectionInterface): void
     +setName($name: CourseNameInterface): void
@@ -92,14 +92,14 @@ interface CourseInformationInterface {
     +appendDepartments($departments: DepartmentCollectionInterface): void
     +getSubDepartments(): DepartmentCollectionInterface
     +appendSubDepartment($department: DepartmentInformationInterface): void
-    +appendSubDepartments($departments: Departments: DepartmentCollectionInterface): void
+    +appendSubDepartments($departments: DepartmentCollectionInterface): void
     +getInstructors(): InstructorCollectionInterface
-    +appendInstructor(($instructor: InstructorInformationInterface): void
+    +appendInstructor($instructor: InstructorInformationInterface): void
     +appendInstructors($instructors: InstructorCollectionInterface): void
-    +getSubInstructors(): InstructorCollectionInterface): void
+    +getSubInstructors(): InstructorCollectionInterface
     +appendSubInstructor($instructor: InstructorInformationInterface): void
     +appendSubInstructors($instructors: InstructorCollectionInterface): void
-    +getStatus($laguage: LanguageInterface): CourseStatusInterface
+    +getStatus($language: LanguageInterface): CourseStatusInterface
     +getStatus(): CourseStatusCollectionInterface
     +setStatus($status: CourseStatusInterface): void
     +setStatus($status: CourseStatusCollectionInterface): void
@@ -129,7 +129,7 @@ CourseNameCollectionInterface --|>NameCollectionInterface
 
 NameCollectionInterface o--> NameInterface
 
-NameCollectionInterface --> Collection
+NameCollectionInterface --|> Collection
 
 CourseNameInterface --|> NameInterface
 

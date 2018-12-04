@@ -3,11 +3,11 @@
 interface OccupationNameInterface
 
 interface NameInterface {
-    +_construct($name: string, $language: LanguageInterface)
+    +__construct($name: string, $language: LanguageInterface)
     +getName(): string
     +setName($name: string): void
     +getLanguage(): LanguageInterface
-    +_toString(): string
+    +__toString(): string
 }
 
 interface OccupationInterface {
@@ -24,7 +24,7 @@ interface OccupationNameCollectionInterface {
     +getByLanguage($language: LanguageInterface): OccupationNameInterface
     +getByLanguages($languages: LanguageCollectionInterface): OccupationNameCollectionInterface
     +setName($name: OccupationNameInterface): void
-    +setNames($name: OccupationNameCollectionInterface): void
+    +setNames($names: OccupationNameCollectionInterface): void
 }
 
 interface NameCollectionInterface {
@@ -32,7 +32,7 @@ interface NameCollectionInterface {
     +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
     +setName($name: NameInterface): void
     +setNames($names: NameCollectionInterface): void
-    +removeByLanguage($languageInterface): boolean
+    +removeByLanguage($language: languageInterface): boolean
     +removeByLanguages($languages: LanguageCollectionInterface): boolean
 }
 

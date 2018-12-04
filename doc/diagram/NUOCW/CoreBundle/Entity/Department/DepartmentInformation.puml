@@ -1,0 +1,87 @@
+@startuml
+
+interface EntityInterface{
+    -getId() : int
+}
+
+interface HasFilesInterface{
+    +getFiles($language : LanguageInterface) : FileCollectionInterface
+    +appendFile($file : FileInformationInterface) : void
+    +appendFiles($files : FileCollectionInterface) : void
+}
+
+interface HasNameInterface{
+    +getName($language : LanguageInterface) : NameInterface
+    +getNames() : NameCollectionInterface
+    +appendName($name : NameInterface) : void
+    +appendNames($names : NameCollectionInterface) : void
+    +setName($name : NameInterface) : void
+    +removeNameByLanguage($language : languageInterface) : NameInterface
+    +removeNamesByLanguages($languages : LanguageCollectionInterface) : NameCollectionInterface
+    +removeName($name : NameInterface) : boolean
+    +removeNames($names : NameCollectionInterface) : boolean
+}
+
+interface DepartmentCollectionInterface{
+}
+
+interface DepartmentInformationInterface{
+   +getName($language : LanguageInterface) : DepartmentNameInterface
+   +getNames() : DepartmentNameCollectionInterface
+   +appendName($name : DepartmentNameInterface) : void
+   +appendNames($names : DepartmentNameCollectionInterface) : void
+   +setName($name : DepartmentNameInterface) : void
+   +removeName($name : DepartmentNameInterface) : boolean
+   +removeNames($names : DepartmentNameCollectionInterface) : boolean
+   +getDivisions() : DivisionCollectionInterface
+   +appendDivision($division : DivisionInformationInterface) : void
+   +appendDivision($divisions : DivisionCollectionInterface) : void
+   +getType() : DepartmentTypeInterface
+   +setType($type : DepartmentTypeInterface) : void
+   +getGroups() : GroupCollectionInterface
+   +appendGroup($group : GroupInformationInterface) : void
+   +appendGroups($groups : GroupInformationInterface) : void
+}
+
+interface Collection{
+}
+
+interface DepartmentNameInterface{
+}
+
+interface NameInterface{
+    +__construct($name : string, $language : LanguageInterface)
+    +getName() : string
+    +setName($name : string) : void
+    +getLanguage() : LanguageInterface
+    +__toString() : string
+}
+
+interface DepartmentNameCollectionInterface{
+}
+
+interface NameCollectionInterface{
+    +getByLanguage($language : LanguageInterface) : NameInterface
+    +getByLanguages($languages : LanguageCollectionInterface) : NameCollection
+    +setName($name : NameInterface) : void
+    +setNames($names : nameCollectionInterface) : void
+    +removeByLanguage($language : LanguageInterface) : boolean
+    +removeByLanguages($languages : LanguageCollectionInterface) : boolean
+}
+
+EntityInterface <|-- DepartmentInformationInterface
+HasFilesInterface <|-- DepartmentInformationInterface
+HasNameInterface <|-- DepartmentInformationInterface
+DepartmentCollectionInterface o--|> DepartmentInformationInterface
+DepartmentNameInterface <-- DepartmentInformationInterface
+DepartmentNameCollectionInterface <-- DepartmentInformationInterface
+
+DepartmentNameInterface <--o DepartmentNameCollectionInterface
+NameCollectionInterface <|-- DepartmentNameCollectionInterface
+
+NameInterface <|-- DepartmentNameInterface
+NameInterface <--o NameCollectionInterface
+
+Collection <|--NameCollectionInterface
+Collection <|-- DepartmentCollectionInterface
+@enduml

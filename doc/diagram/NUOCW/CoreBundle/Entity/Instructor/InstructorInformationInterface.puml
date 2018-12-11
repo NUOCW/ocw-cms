@@ -76,7 +76,7 @@ interface InstructorInformationInterface {
     +removeNames($names: NameCollectionInterface): boolean
     +getOptions($language: LanguageInterface): InstructorOptionalCollectionInterface
     +appendOption($option: InstructorOptionInformationInterface): void
-    +appendOptions($options:InstructorOptionalCollectionInterface): void
+    +appendOptions($options: InstructorOptionalCollectionInterface): void
     +removeOption($option: InstructorOptionalInformationInterface): void
     +removeOptions($options: InstructorOptionalCollectionInterface): void
     +getOccupation(): OccupationInterface

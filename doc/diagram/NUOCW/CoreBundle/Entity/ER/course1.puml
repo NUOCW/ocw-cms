@@ -1,0 +1,21 @@
+@startuml
+
+entity タイプclassification_type_category_relations {
+    + 講義分類カテゴリID course_classification_category_id @INT (FK)
+    + 講義分類タイプID course_classification_type_id @INT (FK)
+
+  }
+
+entity course_classification_type_master {
+    +講義分類タイプID course_classification_type_id @INT
+}
+
+entity E1 {
+}
+
+entity E2 {
+}
+
+タイプclassification_type_category_relations }o----|{ E2
+
+@enduml

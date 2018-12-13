@@ -1,0 +1,65 @@
+@startuml
+
+interface OccupationNameInterface
+
+interface NameInterface {
+    +__construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
+}
+
+interface OccupationInterface {
+    +getName($language: LanguageInterface): OccupationNameInterface
+    +getNames(): OccupationNameCollectionInterface
+    +appendName($name: OccupationNameInterface): void
+    +appendNames($names: OccupationNameCollectionInterface): void
+    +setName($name: OccupationNameInterface): void
+    +removeName($name: OccupationNameInterface): boolean
+    +removeNames($names: OccupationNameCollectionInterface): boolean
+}
+
+interface OccupationNameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): OccupationNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): OccupationNameCollectionInterface
+    +setName($name: OccupationNameInterface): void
+    +setNames($names: OccupationNameCollectionInterface): void
+}
+
+interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: languageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
+}
+
+interface HasNameInterface {
+    +getName($language: LanguageInterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($language: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removeNames($names: NameCollectionInterface): boolean
+}
+
+OccupationInterface --|> HasNameInterface
+
+OccupationInterface --> OccupationNameInterface
+
+OccupationInterface --> OccupationNameCollectionInterface
+
+OccupationNameCollectionInterface o--> OccupationNameInterface
+
+OccupationNameInterface --|> NameInterface
+
+OccupationNameCollectionInterface --|> NameCollectionInterface
+
+NameCollectionInterface o--> NameInterface
+
+@enduml

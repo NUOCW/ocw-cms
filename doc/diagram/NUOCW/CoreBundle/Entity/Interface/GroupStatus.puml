@@ -10,7 +10,7 @@ interface StatusCollectionInterface {
 interface GroupStatusInterface {
 }
 
-Interface StatusInterface {
+interface StatusInterface {
     +getStatus(): StatusMasterInterface
     +getLanguage(): LanguageInterface
     +getDescriptions(): StatusDescriptionCollectionInterface

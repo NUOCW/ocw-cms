@@ -1,23 +1,23 @@
 @startuml
 
-interface AccountInformationInterface{
-    +getID() : int
-    +getUsername() : string
-    +getManager() : AccountManagerInterface
-    +getEmailAddress() : string
-    +getTimecard() : TimecardInterface
+interface AccountInformationInterface {
+    +getID(): int
+    +getUsername(): string
+    +getManager(): AccountManagerInterface
+    +getEmailAddress(): string
+    +getTimecard(): TimecardInterface
 }
 
-interface AccountManagerInterface{
+interface AccountManagerInterface {
 }
 
-interface TimecardSegmentInterface{
-    +getStart() : DateTime
-    +GetFinish() : DateTime
-    +getInterval() : DateInterval
+interface TimecardSegmentInterface {
+    +getStart(): DateTime
+    +GetFinish(): DateTime
+    +getInterval(): DateInterval
 }
 
-interface TimecardInterface{
+interface TimecardInterface {
 }
 
 

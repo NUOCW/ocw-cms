@@ -2,12 +2,12 @@
 
 interface LanguageInterface{
     +getName($language: LanguageInterface): LanguageNameInterface
-    +getName(): LanguageNameCollectionInterface
+    +getNames(): LanguageNameCollectionInterface
     +appendName($name: LanguageNameInterface): void
     +appendNames($names: LanguageNameCollectionInterface): void
     +setName($name: LanguageNameInterface): void
     +removeName($name: LanguageNameInterface): boolean
-    +removeNames($names: LanguageNameInterface): boolean
+    +removeNames($names: LanguageNameCollectionInterface): boolean
 }
 
 interface HasNameInterface{
@@ -26,7 +26,7 @@ interface LanguageNameCollectionInterface{
     +getByLanguage($language: LanguageInterface): LanguageNameInterface
     +getByLanguages($languages: LanguageCollectionInterface): LanguageNameCollectionInterface
     +setName($name: LanguageNameInterface): void
-    +setNames($name: LanguageNameInterface): void
+    +setNames($names: LanguageNameInterface): void
 }
 
 interface LanguageNameInterface{

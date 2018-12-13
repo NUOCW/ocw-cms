@@ -1,64 +1,64 @@
 @startuml
 
-interface GroupOptionalCollectionInterface{
-    +getByLanguage($language : LanguageInterface) : GroupOptionalCollectionInterface
-    +getByType($type : GroupOptionalTypeInterface) : GroupOptionalCollectionInterface
-    +getOption($type : GroupOptionalTypeInterface, $language : LanguageInterface) : GroupOptionalInformationInterface
+interface GroupOptionalCollectionInterface {
+    +getByLanguage($language: LanguageInterface): GroupOptionalCollectionInterface
+    +getByType($type: GroupOptionalTypeInterface): GroupOptionalCollectionInterface
+    +getOption($type: GroupOptionalTypeInterface, $language: LanguageInterface): GroupOptionalInformationInterface
 }
 
-interface OptionalCollectionInterface{
-    +getByLanguage($language : LanguageInterface) : OptionalCollectionInterface
-    +getByType($type : OptionalTypeInterface) : OptionalCollectionInterface
-    +getOption($type : OptionalTypeInterface, $language : LanguageInterface) : OptionalInformationInterface
+interface OptionalCollectionInterface {
+    +getByLanguage($language: LanguageInterface): OptionalCollectionInterface
+    +getByType($type: OptionalTypeInterface): OptionalCollectionInterface
+    +getOption($type: OptionalTypeInterface, $language: LanguageInterface): OptionalInformationInterface
 }
 
-interface GroupOptionalInformationInterface{
-    +getType() : GroupOptionalTypeInterface
-    +getTypeName($language : LanguageInterface) : GroupOptionalTypeNameInterface
-    +getTypeNames() : GroupOptionalTypeNameCollectionInterface
+interface GroupOptionalInformationInterface {
+    +getType(): GroupOptionalTypeInterface
+    +getTypeName($language: LanguageInterface): GroupOptionalTypeNameInterface
+    +getTypeNames(): GroupOptionalTypeNameCollectionInterface
 }
 
-Interface OptionalInformationInterface{
-    +getContent() : string
-    +setContent($content : string) : void
-    +getType() : OptionalTypeInterface
-    +setType($type : OptionalTypeInterface) : void
-    +getTypeName($language : LanguageInterface) : NameInterface
-    +getTypeNames() : NameCollectionInterface
-    +getLanguage() : LanguageInterface
+Interface OptionalInformationInterface {
+    +getContent(): string
+    +setContent($content: string): void
+    +getType(): OptionalTypeInterface
+    +setType($type: OptionalTypeInterface): void
+    +getTypeName($language: LanguageInterface): NameInterface
+    +getTypeNames(): NameCollectionInterface
+    +getLanguage(): LanguageInterface
 }
 
-Interface GroupOptionalTypeInterface{
+Interface GroupOptionalTypeInterface {
 }
 
-interface OptionalTypeInterface{
+interface OptionalTypeInterface {
 }
 
-interface GroupOptionalTypeNameInterface{
+interface GroupOptionalTypeNameInterface {
 }
 
-interface GroupOptionalTypeNameCollectionInterface{
-    +getByLanguage($language : LanguageInterface) : GroupOptionalTypeNameInterface
-    +getByLanguages($languages : languageCollectionInterface) : GroupOptionalTypeNameCollectionInterface
-    +setName($name : GroupOptionalTypeNameInterface) : void
-    +setNames($names : GroupOptionalTypeNameCollectionInterface) : void
+interface GroupOptionalTypeNameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): GroupOptionalTypeNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): GroupOptionalTypeNameCollectionInterface
+    +setName($name: GroupOptionalTypeNameInterface): void
+    +setNames($names: GroupOptionalTypeNameCollectionInterface): void
 }
 
-interface NameInterface{
-    +__construct($name : string, $language : LanguageInterface)
-    +getName() : string
-    +setName($name : string) : void
-    +getLanguage() : LanguageInterface
-    +__toString() : string
+interface NameInterface {
+    +__construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
 }
 
-interface NameCollectionInterface{
-    +getByLanguage($language : LanguageInterface) : NameInterface
-    +getByLanguages($languages : LanguageCollectionInterface) : NameCollectionInterface
-    +setName($name : NameInterface) : void
-    +setNames($names : NameCollectionInterface) : void
-    +removeByLanguage($language : LanguageInterface) : boolean
-    +removeByLanguages($languages : LanguageCollectionInterface) : boolean
+interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
 }
 
 OptionalCollectionInterface <|-- GroupOptionalCollectionInterface

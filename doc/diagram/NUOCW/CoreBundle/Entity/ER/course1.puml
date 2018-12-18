@@ -1,21 +1,175 @@
 @startuml
 
-entity タイプclassification_type_category_relations {
-    + 講義分類カテゴリID course_classification_category_id @INT (FK)
-    + 講義分類タイプID course_classification_type_id @INT (FK)
-
+entity classification_type_category_relations_分類タイプカテゴリ関連 {
+    +  course_classification_category_id @INT (FK) 講義分類カテゴリID
+    +  course_classification_type_id @INT (FK) 講義分類タイプID
   }
 
-entity course_classification_type_master {
-    +講義分類タイプID course_classification_type_id @INT
+entity course_classification_type_master_講義分類タイプマスタ {
+    + course_classification_type_id @INT 講義分類タイプID
 }
 
-entity E1 {
+classification_type_category_relations_分類タイプカテゴリ関連 ----|| course_classification_type_master_講義分類タイプマスタ
+
+entity classification_category_parent_relations_部類カテゴリサブカテゴリ親子関連 {
+    +course_classification_category_id @INT (FK) 講義分類カテゴリID
+    +course_classification_subcategory_id @INT 講義分類サブカテゴリID
 }
 
-entity E2 {
+entity course_classification_category_master_講義分類カテゴリマスタ {
+    +course_classification_category_id @INT 講義分類カテゴリID
 }
 
-タイプclassification_type_category_relations }o----|{ E2
+classification_type_category_relations_分類タイプカテゴリ関連 }o----|| course_classification_category_master_講義分類カテゴリマスタ
+classification_category_parent_relations_部類カテゴリサブカテゴリ親子関連 }o----|| course_classification_category_master_講義分類カテゴリマスタ
+
+entity course_classification_subcategory_master_講義分類サブカテゴリマスタ {
+    +course_classification_subcategory_id @INT 講義分類カテゴリID
+}
+
+classification_category_parent_relations_部類カテゴリサブカテゴリ親子関連 }o----|| course_classification_subcategory_master_講義分類サブカテゴリマスタ
+
+entity course_subcategory_relations_講義分類関連 {
+    +course_id @INT (FK) 講義ID
+    +course_classification_subcategory_id @INT (FK) 講義分類サブカテゴリID
+}
+
+course_subcategory_relations_講義分類関連 }o----|| course_classification_subcategory_master_講義分類サブカテゴリマスタ
+
+entity course_classification_type_name_講義分類タイプ名 {
+    +course_classification_type_id @INT (FK) 講義分類タイプID
+    +language_id @INT (FK) 言語ID
+    ----
+    +name @Varchar(255) 分類タイプ名
+}
+
+course_classification_type_name_講義分類タイプ名 }o---- 言語マスタ
+course_classification_type_master_講義分類タイプマスタ ----|{ course_classification_type_name_講義分類タイプ名
+
+entity course_classification_category_name_講義分類カテゴリ名 {
+    +course_classification_category_id @INT (FK) 講義分類カテゴリID
+    +language_id @INT (FK) 言語ID
+    ----
+    +name @VARCHAR(255) 分類カテゴリ名
+}
+
+course_classification_category_name_講義分類カテゴリ名 }o---- 言語マスタ
+course_classification_category_master_講義分類カテゴリマスタ ----|{ course_classification_category_name_講義分類カテゴリ名
+
+entity course_classification_subcategory_name_講義分類サブカテゴリ名 {
+    +course_classification_subcategory_id @INT (FK) 講義分類サブカテゴリID
+    +language_id @INT (FK) 言語ID
+    ----
+    +name @VARCHAR(255) 分類サブカテゴリ名
+}
+
+course_classification_subcategory_name_講義分類サブカテゴリ名 }---- 言語マスタ
+course_classification_subcategory_master_講義分類サブカテゴリマスタ ||----|{ course_classification_subcategory_name_講義分類サブカテゴリ名
+
+entity course_names_講義名 {
+    +course_id @INT (FK) 講義ID
+    +language_id @INT (FK) 言語ID
+    ----
+    +course_name @VARCHAR(255) 講義名
+}
+
+course_names_講義名 }|---- 言語マスタ
+
+entity course_target_information_講義対象者情報 {
+    +course_id @INT (FK) 講義ID
+    ----
+    target_grade @INT 学年
+    +division_id @INT (FK) 下位部局ID
+}
+
+course_target_information_講義対象者情報 }|---- 下位部局情報
+
+entity course_information_講義情報 {
+    +course_id @INT 講義ID
+}
+
+course_subcategory_relations_講義分類関連 }o----|| course_information_講義情報
+course_names_講義名 }|----|| course_information_講義情報
+course_target_information_講義対象者情報 }o----|| course_information_講義情報
+
+entity course_opening_information_講義開講情報 {
+    +course_opening_information_id @INT 講義開講情報ID
+    ----
+    +course_id @INT (FK) 講義ID
+    +course_code @CHAR(8) 授業コード
+    +opening_year @INT 開講年度
+    +opening_term @INT (FK) 開講期
+}
+
+course_opening_information_講義開講情報 ||----|| course_information_講義情報
+
+entity course_status_講義ステータス {
+    +course_id @INT (FK) 講義ID
+    +language_id @INT (FK) 言語ID
+    ----
+    +statsu_id @INT (FK) ステータスID
+}
+
+course_status_講義ステータス }o---- 言語マスタ
+course_information_講義情報 ||----|{ course_status_講義ステータス
+
+entity status_master_ステータスマスタ {
+    +status_id @INT ステータスID
+}
+
+course_status_講義ステータス }o----o| status_master_ステータスマスタ
+
+entity status_description_ステータス説明 {
+    +status_id @INT (FK) ステータスID
+    +language_id @INT (FK) 言語ID
+    ----
+    status_description @VARCHAR(255) 説明
+}
+
+status_description_ステータス説明 }o---- 言語マスタ
+status_master_ステータスマスタ |o----o{ status_description_ステータス説明
+
+entity opening_term_master_開講期マスタ {
+    +term_id  @INT 開講期ID
+}
+
+entity term_names_開講期名称 {
+    +term_id @INT (FK) 開講期ID
+    +language_id @INT (FK) 言語ID
+    ----
+    +term_name @VARCHAR(255) 名称
+}
+
+course_opening_information_講義開講情報 ||----|| opening_term_master_開講期マスタ
+opening_term_master_開講期マスタ ||----|| term_names_開講期名称
+term_names_開講期名称 }|---- 言語マスタ
+
+entity course_optional_information_開講情報オプション {
+    +course_id @INT (FK) 講義ID
+    +option_id @INT (FK) オプションタイプ
+    +language_id @INT (FK) 言語ID
+    ----
+    option_content TEXT 本文
+}
+
+course_optional_information_開講情報オプション }o---- 言語マスタ
+course_information_講義情報 ||----o{ course_optional_information_開講情報オプション
+
+entity course_optional_type_master_講義情報オプションタイプマスタ {
+    +option_id INT オプションID
+}
+
+entity course_optional_names_講義情報オプション名称 {
+    +option_id @INT (FK) オプションID
+    +language_id @INT (FK) 言語ID
+    ----
+    +option_name @VARCHAR(255) 名称
+}
+
+course_optional_information_講義情報オプション }o----|| course_optional_type_master_講義情報オプションタイプマスタ
+course_optional_type_master_講義情報オプションタイプマスタ ||----|{ course_optional_names_講義情報オプション名称
+course_optional_names_講義情報オプション名称 }o---- 言語マスタ
+
+
 
 @enduml

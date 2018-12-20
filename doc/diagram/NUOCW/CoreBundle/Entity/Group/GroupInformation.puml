@@ -1,0 +1,117 @@
+@startuml
+
+interface EntityInterface {
+    - getId(): int
+}
+
+interface HasIdentifierNameInterface {
+    +getIdentifierName(): string
+    +setIdentifierName($identifierName: string): void
+}
+
+interface HasNameInterface {
+    +getName($language: LanguageInterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removeNames($names: NameCollectionInterface): boolean
+}
+
+interface HasOptionalInformationInterface {
+    +getOptions($language: LanguageInterface): OptionalCollectionInterface
+    +appendOption($option: OptionalInformationInterface): void
+    +appendOptions($Options: OptionalCollectionInterface): void
+    +removeOption($option: OptionalInformationInterface): void
+    +removeOptions($options: OptionalCollectionInterface): void
+}
+
+interface HasStatusInterface {
+    +getStatus($language: LanguageInterface): StatusInterface
+    +getStatuses(): StatusCollectionInterface
+    +setStatus($status: StatusInterface): void
+    +setStatuses($statuses: StatusCollectionInterface): void
+}
+
+interface HasFilesInterface {
+    +getFiles($language: LanguageInterface): FileCollectionInterface
+    +appendFiles($file: FileInformationInterface): void
+    +appendFiles($files: FileCollectionInterface): void
+}
+
+interface GroupCollectionInterface {
+}
+
+interface GroupInformationInterface {
+    +getNames(): GroupNameCollectionInterface
+    +appendName($name: GroupNameInterface): void
+    +appendNames($names: GroupNameCollectionInterface): void
+    +setName($name: GroupNameInterface): void
+    +getOptions($language: LanguageInterface): GroupOptionalCollectionInterface
+    +appendOption($option: GroupOptionalInformationInterface): void
+    +appendOptions($options: GroupOptionalCollectionInterface): void
+    +removeOption($option: GroupOptionalInformationInterface): void
+    +removeOptions($options: GroupOptionalCollectionInterface): void
+    +getDepartments(): DepartmentCollectionInterface
+    +appendDepartment($department: DepartmentInformationInterface): void
+    +appendDepartments($departments: DepartmentCollectionInterface): void
+    +getStatus($language: LanguageInterface): GroupStatusInterface
+    +getStatuses(): GroupStatusCollectionInterface
+    +setStatus($status: GroupStatusInterface): void
+    +setStatuses($statuses: GroupStatusCollectionInterface): void
+}
+
+interface GroupNameInterface {
+}
+
+interface NameInterface {
+    +__construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
+}
+
+interface GroupNameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): GroupNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): GroupNameCollectionInterface
+    +setName($name: GroupNameInterface): void
+    +setNames($names: GroupNameCollectionInterface): void
+}
+
+interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollection
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
+}
+
+interface Collection {
+}
+
+EntityInterface <|-- GroupInformationInterface
+HasIdentifierNameInterface <|-- GroupInformationInterface
+HasNameInterface <|-- GroupInformationInterface
+HasOptionalInformationInterface <|-- GroupInformationInterface
+HasStatusInterface <|-- GroupInformationInterface
+HasFilesInterface <|-- GroupInformationInterface
+
+GroupCollectionInterface o--> GroupInformationInterface
+Collection <|-- GroupCollectionInterface
+
+GroupNameInterface <-- GroupInformationInterface
+GroupNameCollectionInterface <-- GroupInformationInterface
+
+GroupNameInterface <--o GroupNameCollectionInterface
+NameInterface <|-- GroupNameInterface
+NameCollectionInterface <|-- GroupNameCollectionInterface
+NameInterface <--o NameCollectionInterface
+Collection <|-- NameCollectionInterface
+
+
+@enduml

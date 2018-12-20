@@ -6,95 +6,95 @@ interface DayOfTheWeekNameInterface
 interface Collection
 
 interface CourseOpeningInformationInterface {
-+getTimeTableSegments(): TimeTableSegmentCollectionInterface
-+appendTimeTableSegment($segment: TimeTableSegmentInterface): void
-+appendTimeTableSegments($segments: TimeTableSegmentCollectionInterface): void
-+removeTimeTableSegment($segment: TimeTableSegmentInterface): void
-+removeTimeTableSegments($segments: TimeTableSegmentCollectionInterface): void
-+getTerm(): OpeningTermInterface
-+setTerm($term: TermNameInterface): void
-+getCourseCode(): string
-+setCourseCode($code: string): void
-+getYear(): int
-+setYear($year: int): void
+    +getTimeTableSegments(): TimeTableSegmentCollectionInterface
+    +appendTimeTableSegment($segment: TimeTableSegmentInterface): void
+    +appendTimeTableSegments($segments: TimeTableSegmentCollectionInterface): void
+    +removeTimeTableSegment($segment: TimeTableSegmentInterface): void
+    +removeTimeTableSegments($segments: TimeTableSegmentCollectionInterface): void
+    +getTerm(): OpeningTermInterface
+    +setTerm($term: TermNameInterface): void
+    +getCourseCode(): string
+    +setCourseCode($code: string): void
+    +getYear(): int
+    +setYear($year: int): void
 }
 
 interface TimeTableSegmentCollectionInterface {
-+sortByStart(): void
-+sortByClose(): void
-+sortByInterval(): void
+    +sortByStart(): void
+    +sortByClose(): void
+    +sortByInterval(): void
 }
 
 interface TimeTableSegmentInterface {
-+getStart(): DataTime
-+getClose(): DataTime
-+getInterval(): DataInterval
-+setStart($start: DataTime): void
-+setClose($close: DataTime): void
-+compareTo($rhs: TimTableSegment, $method: int): boolean
+    +getStart(): DataTime
+    +getClose(): DataTime
+    +getInterval(): DataInterval
+    +setStart($start: DataTime): void
+    +setClose($close: DataTime): void
+    +compareTo($rhs: TimTableSegment, $method: int): boolean
 }
 
 interface OpeningTermInterface {
-+getName($language: LanguageInterface): TermNameInterface
-+getNames(): TermNameCollectionInterface
-+appendName($name: TermNameInterface): void
-+appendNames($names: TermNameCollectionInterface): void
-+setName($name: TermNameInterface): void
-+removeName($name: TermNameInterface): boolean
-+removeNames($names: TermNameCollectionInterface): boolean
+    +getName($language: LanguageInterface): TermNameInterface
+    +getNames(): TermNameCollectionInterface
+    +appendName($name: TermNameInterface): void
+    +appendNames($names: TermNameCollectionInterface): void
+    +setName($name: TermNameInterface): void
+    +removeName($name: TermNameInterface): boolean
+    +removeNames($names: TermNameCollectionInterface): boolean
 }
 
 interface TermNameCollectionInterface {
-+getByLanguage($language: LanguageInterface): TermNameInterface
-+getByLanguages($languages: LanguageCollectionInterface): TermNameCollectionInterface
-+setName($name: TermNameInterface): void
-+setNames($names: TermNameCollectionInterface): void
+    +getByLanguage($language: LanguageInterface): TermNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): TermNameCollectionInterface
+    +setName($name: TermNameInterface): void
+    +setNames($names: TermNameCollectionInterface): void
 }
 
 interface NameInterface {
-+__construct($name: string, $language: LanguageInterface)
-+getName(): string
-+setName($name: string): void
-+getLanguage(): LanguageInterface
-+__toString(): string
+    +__construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
 }
 
 interface NameCollectionInterface {
-+getByLanguage($language: LanguageInterface): NameInterface
-+getByLanguages($language: LanguageCollectionInterface): NameCollectionInterface
-+setName($name: NameInterface): void
-+setNames($names: NameCollectionInterface): void
-+removeByLanguage($language: LanguageInterface): boolean
-+removeByLanguages($languages: LanguageCollectionInterface): boolean
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($language: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
 }
 
 interface HasNameInterface {
-+getName($language: LanguageInterface): NameInterface
-+getNames(): NameCollectionInterface
-+appendName($name: NameInterface): void
-+appendNames($names: NameCollectionInterface): void
-+setName($name: NameInterface): void
-+removeNameByLanguage($language: LanguageInterface): NameInterface
-+removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
-+removeName($name: NameInterface): boolean
-+removeNames($names: NameCollectionInterface): boolean
+    +getName($language: LanguageInterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removeNames($names: NameCollectionInterface): boolean
 }
 
 interface DayOfTheWeekInterface {
-+getNmae($language: LanguageInterface): DayOfTheWeekNameInterface
-+setNames(): DayOfTheWeekNameCollectionInterface
-+appendName($name: DayOfTheWeekNameInterface)
-+appendNames($names;DayOfTheWeekNameCollectionInterface): void
-+setName($name: DayOfTheWeekNameInterface): void
-+removeName($name: DayOfTheWeekNameInterface): boolean
-+removeNames($names: DayOfTheWeekNameCollectionInterface): boolean
+    +getNmae($language: LanguageInterface): DayOfTheWeekNameInterface
+    +setNames(): DayOfTheWeekNameCollectionInterface
+    +appendName($name: DayOfTheWeekNameInterface)
+    +appendNames($names;DayOfTheWeekNameCollectionInterface): void
+    +setName($name: DayOfTheWeekNameInterface): void
+    +removeName($name: DayOfTheWeekNameInterface): boolean
+    +removeNames($names: DayOfTheWeekNameCollectionInterface): boolean
 }
 
 interface DayOfTheWeekNameCollectionInterface {
-+getByLanguage($language: LanguageInterface): DayOfTheWeekNameInterface
-+getByLanguages($languages: LanguageCollectionInterface): DayOfTheWeekNameCollectionInterface
-+setName($name: DayOfTheWeekNameInterface): void
-+setNames($name: DayOfTheWeekNameCollectionInterface): void
+    +getByLanguage($language: LanguageInterface): DayOfTheWeekNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): DayOfTheWeekNameCollectionInterface
+    +setName($name: DayOfTheWeekNameInterface): void
+    +setNames($name: DayOfTheWeekNameCollectionInterface): void
 }
 
 CourseOpeningInformationInterface --> TimeTableSegmentCollectionInterface

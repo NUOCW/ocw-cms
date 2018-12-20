@@ -5,8 +5,8 @@ interface CourseTargetCollectionInterface
 interface Collection
 
 interface CourseTargetInformationInterface {
-+getDivision():DivisionInformationInterface
-+getGrade(): int
+    +getDivision():DivisionInformationInterface
+    +getGrade(): int
 }
 
 CourseTargetCollectionInterface --|> Collection

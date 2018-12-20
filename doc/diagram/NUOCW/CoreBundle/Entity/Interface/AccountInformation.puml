@@ -1,0 +1,24 @@
+@startuml
+
+interface AccountInformationInterface {
+    +getID(): int
+    +getUsername(): string
+    +getManager(): AccountManagerInterface
+    +getEmailAddress(): string
+    +getTimecard(): TimecardInterface
+}
+
+interface AccountManagerInterface {
+}
+
+interface TimecardSegmentInterface {
+    +getStart(): DateTime
+    +GetFinish(): DateTime
+    +getInterval(): DateInterval
+}
+
+interface TimecardInterface {
+}
+
+
+@enduml

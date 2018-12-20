@@ -1,0 +1,17 @@
+@startuml
+
+Interface HasMoviesInterface {
+    +getMovies(): MovieCollectionInterface
+    +appendMovie($movie: MovieInformationInterface): void
+    +appendMovies($movies: MovieCollectionInterface): void
+}
+
+interface MovieCollectionInterface {
+}
+
+interface MovieInformationInterface {
+}
+
+MovieInformationInterface <--o MovieCollectionInterface
+
+@enduml

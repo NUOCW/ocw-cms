@@ -1,0 +1,46 @@
+@startuml
+
+interface FileCollectionInterface {
+}
+
+interface HasFilesInterface {
+    +getFiles($language: LanguageInterface): FileCollectionInterface
+    +appendFile($file: FileInformationInterface): void
+    +appendFiles($files: FileCollectionInterface): void
+}
+
+interface FileInformationInterface {
+    +getHash(): string
+    +getManager(): FileManagerInterface
+    +getComment(): string
+    +getMimeType(): MimeTypeInterface
+    +getCopyRight(): CopyRightInformationInterface
+}
+
+interface FileHashInterface {
+    +getHash(): string
+    +getMethod(): int
+    +hash($file: SplFileObject, $method: int): string
+}
+
+interface MimeTypeInterface {
+    +_toString(): string
+    +getDescription(): string
+}
+
+interface CopyRightInformationInterface {
+    +getLicense(): LicenseInterface
+    +getOwner()
+}
+
+interface LicenseInterface {
+    +getOriginalDocumentURL(): string
+    +getLogoURL(): string
+}
+
+interface FileManagerInterface {
+    +getFileURL(): string
+}
+
+FileInformationInterface <--o FileCollectionInterface
+@enduml

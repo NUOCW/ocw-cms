@@ -7,7 +7,7 @@ interface Collection
 interface DivisionNameInterface
 
 interface EntityInterface {
-    -getld(): int
+    +getld(): int
 }
 
 interface DivisionInformationInterface {

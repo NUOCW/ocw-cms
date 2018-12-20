@@ -1,0 +1,77 @@
+@startuml
+
+interface LanguageInterface{
+    +getName($language: LanguageInterface): LanguageNameInterface
+    +getNames(): LanguageNameCollectionInterface
+    +appendName($name: LanguageNameInterface): void
+    +appendNames($names: LanguageNameCollectionInterface): void
+    +setName($name: LanguageNameInterface): void
+    +removeName($name: LanguageNameInterface): boolean
+    +removeNames($names: LanguageNameCollectionInterface): boolean
+}
+
+interface HasNameInterface{
+    +getName($language: LanguageInterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($names: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNamesByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removeNames($names: NameCollectionInterface): boolean
+}
+
+interface LanguageNameCollectionInterface{
+    +getByLanguage($language: LanguageInterface): LanguageNameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): LanguageNameCollectionInterface
+    +setName($name: LanguageNameInterface): void
+    +setNames($names: LanguageNameInterface): void
+}
+
+interface LanguageNameInterface{
+}
+
+interface NameCollectionInterface{
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
+}
+
+interface NameInterface{
+    +__construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
+}
+
+interface EntityInterface{
+    +getId(): int
+}
+
+interface LanguageCollectionInterface{
+}
+
+interface Collection{
+}
+
+LanguageCollectionInterface --|> Collection
+LanguageCollectionInterface o--> LanguageInterface
+
+LanguageInterface --|> EntityInterface
+LanguageInterface --|> HasNameInterface
+LanguageInterface --> LanguageNameCollectionInterface
+LanguageInterface --> LanguageNameInterface
+
+LanguageNameCollectionInterface o--> LanguageNameInterface
+LanguageNameCollectionInterface --|> NameCollectionInterface
+
+LanguageNameInterface --|> NameInterface
+
+NameCollectionInterface o--> NameInterface
+
+@enduml

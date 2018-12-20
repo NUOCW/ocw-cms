@@ -170,6 +170,78 @@ course_optional_information_講義情報オプション }o----|| course_optional
 course_optional_type_master_講義情報オプションタイプマスタ ||----|{ course_optional_names_講義情報オプション名称
 course_optional_names_講義情報オプション名称 }o---- 言語マスタ
 
+entity course_instructor_relation_講義部局関連 {
+    +course_id @INT (FK) 講義ID
+    +department_id @INT (FK) 開講部局ID
+    ----
+    +priority @INT 表示優先度
+}
 
+course_instructor_relation_講義部局関連 }|---- 部局情報
+course_information_講義情報 ||---- course_instructor_relation_講義部局関連
+
+entity course_instructor_relation_講義教員関連 {
+    +course_id @INT (FK) 講義ID
+    +instructor_id @INT (FK) 担当教員ID
+    ----
+    +priority @INT 表示優先度
+}
+
+course_instructor_relation_講義教員関連 }|---- 教員情報
+course_information_講義情報 ||----|{ course_instructor_relation_講義教員関連
+
+entity course_fle_relation_講義関連ファイル {
+    +course_id @INT (FK) 講義ID
+    +file_id @INT(FK) ファイルID
+    +relation_type_id @INT (FK) 関連タイプ
+    +language_id @INT (FK) 言語ID
+}
+
+course_fle_relation_講義関連ファイル }o---- ファイル情報
+course_fle_relation_講義関連ファイル }o---- 言語マスタ
+course_fle_relation_講義関連ファイル }o---- ファイル関連タイプマスタ
+course_information_講義情報 ||----o{ course_fle_relation_講義関連ファイル
+
+entity course_movie_relation_講義関連動画 {
+    +course_id @INT (FK) 講義ID
+    +movie_id @INT (FK) 動画ID
+    +language_id @INT (FK) 言語ID
+}
+
+course_movie_relation_講義関連動画 }o---- 外部動画情報
+course_movie_relation_講義関連動画 }o---- 言語マスタ
+course_information_講義情報 ||----o{ course_movie_relation_講義関連動画
+
+entity time_table_time_master_講義時刻マスタ {
+    +time_id @INT 開講時刻ID
+    ----
+    time_start @TIME 開始時刻
+    time_close @TIME 終了時刻
+}
+
+entity time_table_segments_講義時刻割 {
+    +course_opening_information_id @INT (FK) 講義開講情報ID
+    ----
+    +day_of_the_week_id @INT (FK) 曜日ID
+    +time_id @INT (FK) 開講時限ID
+}
+
+time_table_time_master_講義時刻マスタ ||----o{ time_table_segments_講義時刻割
+course_opening_information_講義開講情報 ||----o{ time_table_segments_講義時刻割
+
+entity day_of_the_week_master_曜日マスタ {
+    +day_of_the_week_id @INT 曜日ID
+}
+
+entity day_of_the_week_names_曜日名称 {
+    +day_of_the_week_id @INT (FK) 曜日ID
+    +language_id @INT (FK) 言語ID
+    ----
+    +day_of_the_week_name @VARCHAR(255) 曜日名
+}
+
+time_table_segments_開講時刻 }o----|| day_of_the_week_master_曜日マスタ
+day_of_the_week_master_曜日マスタ ||----|| day_of_the_week_names_曜日名称
+day_of_the_week_names_曜日名称 }---- 言語マスタ
 
 @enduml

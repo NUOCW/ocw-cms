@@ -16,7 +16,7 @@ interface CourseStatusCollectionInterface {
 
 interface StatusMasterInterface {
     +getName($language: LanguageInterface): StatusNameInterface
-    +getName(): StatusNameCollectionInterface
+    +getNames(): StatusNameCollectionInterface
     +appendName($name: StatusNameInterface): void
     +appendNames($names: StatusNameCollectionInterface): void
     +setName($name: StatusNameInterface): void
@@ -57,7 +57,7 @@ interface HasNameInterface {
     +getName($language: LanguageInterface): NameInterface
     +getNames(): NameCollectionInterface
     +appendName($name: NameInterface): void
-    +appendNames($name;NameCollectionInterface): void
+    +appendNames($name: NameCollectionInterface): void
     +setName($name: NameInterface): void
     +removeNameByLanguage($language: LanguageInterface): NameInterface
     +removeNameByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
@@ -67,7 +67,7 @@ interface HasNameInterface {
 
 interface StatusNameCollectionInterface {
     +getByLanguages($languages: LanguageCollectionInterface): StatusNameCollectionInterface
-    +getByLanguages($languages: LanguageCollectionInterface): StatusNameCollectionInterface
+    +getByLanguages($languages: LanguageCollectionInterface): StatusNameInterface
     +setName($name: StatusNameInterface): void
     +setNames($names: StatusNameCollectionInterface): void
 }

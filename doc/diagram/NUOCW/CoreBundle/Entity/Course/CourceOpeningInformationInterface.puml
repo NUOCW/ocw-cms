@@ -81,9 +81,9 @@ interface HasNameInterface {
 }
 
 interface DayOfTheWeekInterface {
-    +getNmae($language: LanguageInterface): DayOfTheWeekNameInterface
+    +getName($language: LanguageInterface): DayOfTheWeekNameInterface
     +setNames(): DayOfTheWeekNameCollectionInterface
-    +appendName($name: DayOfTheWeekNameInterface)
+    +appendName($name: DayOfTheWeekNameInterface): void
     +appendNames($names;DayOfTheWeekNameCollectionInterface): void
     +setName($name: DayOfTheWeekNameInterface): void
     +removeName($name: DayOfTheWeekNameInterface): boolean
@@ -113,17 +113,19 @@ OpeningTermInterface --> TermNameCollectionInterface
 
 OpeningTermInterface --|> HasNameInterface
 
-OpeningTermInterface --> DayOfTheWeekNameInterface
+DayOfTheWeekInterface --> DayOfTheWeekNameInterface
 
-OpeningTermInterface --> DayOfTheWeekNameCollectionInterface
+DayOfTheWeekInterface --> DayOfTheWeekNameCollectionInterface
+
+DayOfTheWeekInterface --|> HasNameInterface
 
 TermNameInterface --|> NameInterface
 
-TermNameInterface --> DayOfTheWeekNameInterface
+DayOfTheWeekNameInterface --|> NameInterface
 
 TermNameCollectionInterface --|> NameCollectionInterface
 
-TermNameCollectionInterface --> DayOfTheWeekNameCollectionInterface
+DayOfTheWeekNameCollectionInterface --|> NameCollectionInterface
 
 NameCollectionInterface --|> Collection
 

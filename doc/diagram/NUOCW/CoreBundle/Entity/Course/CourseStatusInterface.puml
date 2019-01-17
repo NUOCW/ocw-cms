@@ -1,0 +1,116 @@
+@startuml
+
+interface CourseStatusInterface
+
+interface StatusDescriptionCollectionInterface
+
+interface StatusNameInterface
+
+interface EntityInterface {
+    -getId(): int
+}
+
+interface CourseStatusCollectionInterface {
+    +getStatus($language: LanguageInterface): CourseStatus
+}
+
+interface StatusMasterInterface {
+    +getName($language: LanguageInterface): StatusNameInterface
+    +getNames(): StatusNameCollectionInterface
+    +appendName($name: StatusNameInterface): void
+    +appendNames($names: StatusNameCollectionInterface): void
+    +setName($name: StatusNameInterface): void
+    +removeName($name: StatusNameInterface): boolean
+    +removeNames($names: StatusNameCollectionInterface): boolean
+    +getDescriptions(): StatusDescriptionCollectionInterface
+    +getDescription($language: LanguageInterface): StatusDescriptionInterface
+}
+
+interface StatusDescriptionInterface {
+    +__construct($description: string, $language: LanguageInterface)
+    +getDescription(): string
+    +setDescription($description: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
+}
+
+interface NameInterface {
+    +__construct($name: string, $language: LanguageInterface)
+    +getName(): string
+    +setName($name: string): void
+    +getLanguage(): LanguageInterface
+    +__toString(): string
+}
+
+interface StatusCollectionInterface {
+    +getStatus($language: LanguageInterface): StatusInterface
+}
+
+interface StatusInterface {
+    +getStatus(): StatusMasterInterface
+    +getLanguage(): LanguageInterface
+    +getDescriptions(): StatusDescriptionCollectionInterface
+    +getDescription($language: LanguageInterface): string
+}
+
+interface HasNameInterface {
+    +getName($language: LanguageInterface): NameInterface
+    +getNames(): NameCollectionInterface
+    +appendName($name: NameInterface): void
+    +appendNames($name: NameCollectionInterface): void
+    +setName($name: NameInterface): void
+    +removeNameByLanguage($language: LanguageInterface): NameInterface
+    +removeNameByLanguages($languages: LanguageCollectionInterface): NameCollectionInterface
+    +removeName($name: NameInterface): boolean
+    +removes($names: NameCollectionInterface): boolean
+}
+
+interface StatusNameCollectionInterface {
+    +getByLanguages($languages: LanguageCollectionInterface): StatusNameCollectionInterface
+    +getByLanguages($languages: LanguageCollectionInterface): StatusNameInterface
+    +setName($name: StatusNameInterface): void
+    +setNames($names: StatusNameCollectionInterface): void
+}
+
+interface NameCollectionInterface {
+    +getByLanguage($language: LanguageInterface): NameInterface
+    +getByLanguages($language: LanguageCollectionInterface): NameCollectionInterface
+    +setName($name: NameInterface): void
+    +setNames($names: NameCollectionInterface): void
+    +removeByLanguage($language: LanguageInterface): boolean
+    +removeByLanguages($languages: LanguageCollectionInterface): boolean
+}
+
+CourseStatusCollectionInterface --|> StatusCollectionInterface
+
+CourseStatusCollectionInterface ..> CourseStatusInterface
+
+CourseStatusInterface --|> StatusInterface
+
+CourseStatusInterface ..> StatusMasterInterface
+
+StatusMasterInterface --|> EntityInterface
+
+StatusMasterInterface --> StatusNameInterface
+
+StatusMasterInterface -->StatusDescriptionCollectionInterface
+
+StatusMasterInterface --> StatusNameCollectionInterface
+
+StatusMasterInterface --|> HasNameInterface
+
+StatusNameInterface --|> NameInterface
+
+StatusNameCollectionInterface o--> StatusNameInterface
+
+StatusNameCollectionInterface --|> NameCollectionInterface
+
+NameCollectionInterface o--> NameInterface
+
+StatusDescriptionCollectionInterface ..>StatusDescriptionInterface
+
+
+
+
+
+@enduml

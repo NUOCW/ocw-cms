@@ -11,7 +11,7 @@ entity course_classification_type_master_講義分類タイプマスタ {
 
 classification_type_category_relations_分類タイプカテゴリ関連 ----|| course_classification_type_master_講義分類タイプマスタ
 
-entity classification_category_parent_relations_部類カテゴリサブカテゴリ親子関連 {
+entity classification_category_parent_relations_分類カテゴリサブカテゴリ親子関連 {
     +course_classification_category_id @INT (FK) 講義分類カテゴリID
     +course_classification_subcategory_id @INT 講義分類サブカテゴリID
 }
@@ -21,13 +21,13 @@ entity course_classification_category_master_講義分類カテゴリマスタ {
 }
 
 classification_type_category_relations_分類タイプカテゴリ関連 }o----|| course_classification_category_master_講義分類カテゴリマスタ
-classification_category_parent_relations_部類カテゴリサブカテゴリ親子関連 }o----|| course_classification_category_master_講義分類カテゴリマスタ
+classification_category_parent_relations_分類カテゴリサブカテゴリ親子関連 }o----|| course_classification_category_master_講義分類カテゴリマスタ
 
 entity course_classification_subcategory_master_講義分類サブカテゴリマスタ {
     +course_classification_subcategory_id @INT 講義分類カテゴリID
 }
 
-classification_category_parent_relations_部類カテゴリサブカテゴリ親子関連 }o----|| course_classification_subcategory_master_講義分類サブカテゴリマスタ
+classification_category_parent_relations_分類カテゴリサブカテゴリ親子関連 }o----|| course_classification_subcategory_master_講義分類サブカテゴリマスタ
 
 entity course_subcategory_relations_講義分類関連 {
     +course_id @INT (FK) 講義ID
@@ -141,10 +141,10 @@ entity term_names_開講期名称 {
 }
 
 course_opening_information_講義開講情報 ||----|| opening_term_master_開講期マスタ
-opening_term_master_開講期マスタ ||----|| term_names_開講期名称
+opening_term_master_開講期マスタ ||----|{ term_names_開講期名称
 term_names_開講期名称 }|---- 言語マスタ
 
-entity course_optional_information_開講情報オプション {
+entity course_optional_information_講義情報オプション {
     +course_id @INT (FK) 講義ID
     +option_id @INT (FK) オプションタイプ
     +language_id @INT (FK) 言語ID
@@ -152,8 +152,8 @@ entity course_optional_information_開講情報オプション {
     option_content TEXT 本文
 }
 
-course_optional_information_開講情報オプション }o---- 言語マスタ
-course_information_講義情報 ||----o{ course_optional_information_開講情報オプション
+course_optional_information_講義情報オプション }o---- 言語マスタ
+course_information_講義情報 ||----o{ course_optional_information_講義情報オプション
 
 entity course_optional_type_master_講義情報オプションタイプマスタ {
     +option_id INT オプションID
@@ -212,22 +212,22 @@ course_movie_relation_講義関連動画 }o---- 外部動画情報
 course_movie_relation_講義関連動画 }o---- 言語マスタ
 course_information_講義情報 ||----o{ course_movie_relation_講義関連動画
 
-entity time_table_time_master_講義時刻マスタ {
+entity time_table_time_master_開講時刻マスタ {
     +time_id @INT 開講時刻ID
     ----
     time_start @TIME 開始時刻
     time_close @TIME 終了時刻
 }
 
-entity time_table_segments_講義時刻割 {
+entity time_table_segments_講義時間割 {
     +course_opening_information_id @INT (FK) 講義開講情報ID
     ----
     +day_of_the_week_id @INT (FK) 曜日ID
     +time_id @INT (FK) 開講時限ID
 }
 
-time_table_time_master_講義時刻マスタ ||----o{ time_table_segments_講義時刻割
-course_opening_information_講義開講情報 ||----o{ time_table_segments_講義時刻割
+time_table_time_master_開講時刻マスタ ||----o{ time_table_segments_講義時間割
+course_opening_information_講義開講情報 ||----o{ time_table_segments_講義時間割
 
 entity day_of_the_week_master_曜日マスタ {
     +day_of_the_week_id @INT 曜日ID
@@ -241,7 +241,7 @@ entity day_of_the_week_names_曜日名称 {
 }
 
 time_table_segments_開講時刻 }o----|| day_of_the_week_master_曜日マスタ
-day_of_the_week_master_曜日マスタ ||----|| day_of_the_week_names_曜日名称
+day_of_the_week_master_曜日マスタ ||----|{ day_of_the_week_names_曜日名称
 day_of_the_week_names_曜日名称 }---- 言語マスタ
 
 @enduml

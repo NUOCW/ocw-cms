@@ -1,0 +1,9 @@
+@startuml
+
+!include_many ./Entities.iuml!module_master
+
+module_master_モジュールマスタ |o---- 外部動画情報
+module_master_モジュールマスタ |o---- テンプレート情報
+module_master_モジュールマスタ ||---- ユーザ情報
+
+@enduml

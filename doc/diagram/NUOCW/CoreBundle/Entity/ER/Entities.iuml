@@ -1,0 +1,321 @@
+
+
+
+@startuml(id=instructor_department_relation)
+    entity instructor_department_relation_部局教員関連 {
+        +instructor_id @INT (FK) 教員ID
+        +division_id @INT (FK) 下位部局ID
+    }
+@enduml
+
+@startuml (id=instructor_information)
+    entity instructor_information_教員情報{
+        +instructor_id @INT 教員ID
+        ----
+        +occupation_id @INT (FK) 職員ID
+        email_address @VARCHAR(65535) E-mailアドレス
+        その他
+    }
+@enduml
+
+@startuml (id=instructor_optional_information)
+    entity instructor_optional_information_教員情報オプション{
+        +instructor_id @INT (FK) 教員ID
+        +option_id @INT (FK) 教員情報オプションタイプID
+        +language_id @INT (FK) 言語ID
+        ----
+        +option_content TEXT 本文
+    }
+@enduml
+
+@startuml (id=occupation_master)
+    entity occupation_master_職階マスタ{
+        occupation_id @INT 職階ID
+    }
+@enduml
+
+@startuml (id=occupation_name)
+    entity occupation_name_職名{
+        +occupation_id @INT (FK) 職階ID
+        +language_id @INT (FK)
+        ----
+        +occupation_name @VARCHAR(255) 職名
+    }
+@enduml
+
+@startuml (id=instructor_name)
+    entity instructor_name_教員氏名{
+        +instructor_id @INT (FK) 教員ID
+        +language_id @INT (FK) 言語ID
+        ----
+        +family_name @VARCHAR(255) 氏
+        +first_name @VARCHAR(255) 名
+        +full_name @varchar(65535) 氏名
+    }
+@enduml
+
+@startuml (id=course_instructor_relation)
+    entity course_instructor_relation_講義教員関連{
+        +course_id @INT (FK) 講義ID
+        +instructor_id @INT (FK) 担当教員ID
+        ----
+        +priority @INT 表示優先度
+    }
+@enduml
+
+@startuml (id=instructor_movie_relation)
+    entity instructor_movie_relation_教員関連動画{
+     +instructor_id @INT (FK) 教員ID
+     +movie_id@INT (FK) 動画ID
+     +language_id @INT 言語ID
+    }
+@enduml
+
+@startuml (id=instructor_file_relation)
+    entity instructor_file_relation_教員関連ファイル{
+        +instructor_id @INT (FK) 教員ID
+        +file_id @INT (FK) ファイルID
+        +relation_type_id @INT (FK) 関連タイプID
+        +language_id @INT (FK) 言語ID
+    }
+@enduml
+
+@startuml (id=instructor_optional_master)
+    entity instructor_optional_master_教員情報オプションタイプマスタ{
+        +option_id @INT 教員情報オプションタイプID
+    }
+@enduml
+
+@startuml (id=instructor_optional_name)
+    entity instructor_optional_name_教員情報オプション名称{
+        +option_id @INT (FK) オプションID
+        +language_id @INT (FK) 言語ID
+        ----
+        +option_name @VARCHAR(255) 名称
+    }
+@enduml
+
+@startuml (id=course_department_relation)
+    entity course_department_relation_講義部局関連{
+        +course_id @INT (FK) 講義ID
+        +department_id @INT (FK) 開講部局ID
+        ----
+        +priority @INT 表示優先度
+    }
+@enduml
+
+@startuml (id=department_movie_relation)
+    entity department_movie_relation_部局関連動画{
+        +department_id @INT (FK) 部局ID
+        +movie_id @INT (FK) 動画ID
+        +language_id @INT (FK) 言語ID
+    }
+@enduml
+
+@startuml (id=department_file_relation)
+    entity department_file_relation_部局関連ファイル{
+        +department_id @INT (FK) 部局ID
+        +file_id @INT (FK) ファイルID
+        +relation_type_id @INT (FK) 関連タイプ
+        +language_id @INT (FK) 言語ID
+    }
+@enduml
+
+@startuml (id=group_movie_relation)
+    entity group_movie_relation_グループ関連動画{
+        +group_id @INT (FK) 公開グループID
+        +movie_id @INT (FK) 動画ID
+        +language_id @INT (FK) 言語ID
+    }
+@enduml
+
+@startuml (id=group_file_relation)
+    entity group_file_relation_グループ関連ファイル{
+        +group_id @INT (FK) グループID
+        +file_id @INT (FK) ファイルID
+        +relation_type_id @INT (FK) 関連タイプ
+        +language_id @INT (FK) 言語ID
+    }
+@enduml
+
+@startuml (id=department_information)
+    entity department_information_部局情報{
+        +department_id @INT (FK) 部局ID
+        ----
+        +department_type_id @INT (FK) 部局種別
+        department_chairperson @INT (FK) 部局長
+        department_url @VARCHAR(65535) 部局URL
+    }
+@enduml
+
+@startuml(id=group_department_relation)
+    entity group_department_relation_公開グループ部局関連{
+        +group_id @INT (FK) 公開グループID
+        +department_id @INT (FK) 部局ID
+    }
+@enduml
+
+@startuml (id=group_information)
+    entity group_information_公開グループ情報{
+        +group_id @INT 公開グループID
+       　----
+       +group_identifier_name @VARCHAR(255) 公開グループ職別名
+       +priority @INT 表示優先度
+    }
+@enduml
+
+@startuml(id=department_type_master)
+    entity department_type_master_部局種別マスタ{
+        +department_type_id @INT 部局種別ID
+    }
+@enduml
+
+@startuml (id=department_type_name)
+    entity department_type_name_部局種別名{
+        +department_type_id @INT (FK) 部局種別ID
+        +language_id @INT (FK) 言語ID
+        ----
+        +department_type_name @VARCHAR(255) 部局種別名称
+    }
+@enduml
+
+@startuml (id=group_optional_information)
+    entity group_optional_information_公開グループ情報オプション{
+        +group_id @INT (FK) 公開グループID
+        +option_id @INT (FK) オプションタイプ
+        +language_id @INT 言語ID
+        ----
+        +option_content TEXT 本文
+    }
+@enduml
+
+@startuml (id=department_division_relation)
+    entity department_division_relation_部局下位部局関連{
+        +department_id @INT (FK) 部局ID
+        +division_id @INT (FK) 下位部局ID
+    }
+@enduml
+
+@startuml (id=group_optional_type_master)
+entity group_optional_type_master_公開グループ情報オプションタイプマスタ{
+    +option_id @INT (FK) オプションID
+}
+@enduml
+
+@startuml (id=division_information)
+    entity division_information_下位部局情報{
+        +division_id @INT 下位部局ID
+    }
+@enduml
+
+@startuml (id=group_optional_name)
+    entity group_optional_name_公開グループ情報オプション名称{
+        +option_id @INT (FK) オプションID
+        +language_id @INT (FK) 言語ID
+        ----
+        +option_name @VARCHAR(255) 名称
+    }
+@enduml
+
+@startuml (id=division_name)
+    entity division_name_下位部局名{
+        +division_id @INT (FK) 下位部局ID
+        +language_id @INT (FK) 言語ID
+        ----
+        +department_name @VARCHAR(255) 部局名
+    }
+@enduml
+
+@startuml (id=department_name)
+    entity department_name_部局名{
+        +department_id @INT (FK) 部局ID
+        +language_id @INT (FK) 言語ID
+        ----
+        +department_name @VARCHAR(255) 部局名
+    }
+@enduml
+
+@startuml(id=group_name)
+    entity group_name_公開グループ名{
+        +group_id @INT (FK) 公開グループID
+        +language_id @INT (FK) 言語ID
+        ----
+        group_name @VARCHAR(255) 公開グループ名
+    }
+@enduml
+
+@startuml (id=account_information)
+    entity account_information_ユーザアカウント情報{
+        +account_id @INT アカウントID
+        ----
+        +module_id @INT (FK) 管理モジュールID
+        +account_name @VARCHAR(255) アカウント名
+        +email_address @VARCHAR(65535) E-mailアドレス
+    }
+@enduml
+
+@startuml (id=account_authority_relation)
+    entity account_authority_relation_ユーザ権限関連{
+        +account_id @INT (FK) アカウントID
+        +authority_id @INT (FK) 権限ID
+    }
+@enduml
+
+@startuml (id=account_group_relation)
+    entity account_group_relation_アカウントグループ関連{
+        +account_group_id @INT (FK) アカウントグループID
+        +account_id @INT (FK) アカウントID
+    }
+@enduml
+
+@startuml (id=authority_master)
+    entity authority_master_権限マスタ{
+        +authority_id @INT 権限ID
+        ----
+       +authority_name @VARCHAR(255) 権限名
+       description TEXT 説明
+    }
+@enduml
+
+@startuml (id=account_group_information)
+    entity account_group_information_アカウントグループ情報{
+        +account_group_id @INT アカウントグループID
+        ----
+        +account_group_name @VARCHAR(255) アカウントグループ名
+    }
+@enduml
+
+@startuml (id=group_authority_relation)
+    entity group_authority_relation_グループ権限関連{
+        +account_group_id @INT (FK) アカウントグループID
+        +authority_id @INT (FK) 権限ID
+    }
+@enduml
+
+@startuml (id=timecard)
+    entity timecard_勤務記録{
+        +account_id @INT (FK) アカウントID
+        ----
+        +start_time @TIME 勤務開始時刻
+        end_time @TIME 勤務終了時刻
+    }
+@enduml
+
+@startuml (id=module_master)
+    entity module_master_モジュールマスタ{
+        +module_id @INT モジュールID
+        ----
+        module_name @VARCHAR(255) モジュール名
+    }
+@enduml
+
+
+
+
+
+
+
+
+
+
+

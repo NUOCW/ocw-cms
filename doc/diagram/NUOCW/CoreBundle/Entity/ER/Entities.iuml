@@ -309,6 +309,64 @@ entity group_optional_type_master_公開グループ情報オプションタイ�
     }
 @enduml
 
+@startuml (id=interpage_relation)
+    entity interpage_relation_ページ間関連閉包テーブル{
+        +parent_page_id @INT (FK) 親ページID
+        +child_page_id @INT (FK) 子ページID
+    }
+@enduml
+
+@startuml (id=page_type_master)
+    entity page_type_master_ページタイプマスタ{
+        +page_type_id @INT ページタイプID
+        ----
+        +page_type_name @VARCHAR(255) ページタイプ名
+        description TEXT 説明
+    }
+@enduml
+
+@startuml (id=page_information)
+    entity page_information_ページ情報{
+        +page_id @INT ページID
+        ----
+        +page_name @VARCHAR(255) ページ名
+        description TEXT 説明
+    }
+@enduml
+
+@startuml (id=page_type_relation)
+    entity page_type_relation_ページタイプ関連{
+        +page_id @INT (FK) ページID
+        +page_type_id @INT (FK) ページタイプID
+    }
+@enduml
+
+@startuml (id=page_variable_information)
+    entity page_variable_information_ページ変数情報{
+        +page_id @INT (FK) ページID
+        +variable_name @VARCHAR(255) 変数名
+        +language_id @INT (FK) 言語ID
+        ----
+        +variable_value TEXT 変数値
+    }
+@enduml
+
+@startuml (id=page_template_relation)
+    entity page_template_relation_ページテンプレート関連{
+        +page_id @INT (FK) ページID
+        +template_id @INT (FK) テンプレートID
+    }
+@enduml
+
+@startuml (id=template_information)
+    entity template_information_テンプレート情報{
+        +template_id @INT テンプレートID
+        ----
+        +module_id @INT (FK) モジュールID
+    }
+@enduml
+
+
 
 
 

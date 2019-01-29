@@ -1,26 +1,26 @@
 @startuml
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+!include_many ./Entities.iuml!interpage_relation
+!include_many ./Entities.iuml!page_type_master
+!include_many ./Entities.iuml!page_information
+!include_many ./Entities.iuml!page_type_relation
+!include_many ./Entities.iuml!page_variable_information
+!include_many ./Entities.iuml!page_template_relation
+!include_many ./Entities.iuml!template_information
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
+interpage_relation_ページ間関連閉包テーブル }o----o| page_information_ページ情報
 
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
+page_type_master_ページタイプマスタ |o----o{ page_type_relation_ページタイプ関連
 
-class ArrayList {
-Object[] elementData
-size()
-}
+page_information_ページ情報 |o----o{ page_type_relation_ページタイプ関連
+page_information_ページ情報 |o----o{ page_template_relation_ページテンプレート関連
+page_information_ページ情報 |o----o{ page_variable_information_ページ変数情報
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
+page_template_relation_ページテンプレート関連 }o----o| template_information_テンプレート情報
+
+template_information_テンプレート情報 }o---- モジュールマスタ
+
+page_variable_information_ページ変数情報 }o---- 言語マスタ
+
 
 @enduml
